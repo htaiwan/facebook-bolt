@@ -15,7 +15,8 @@
   "dependencies": {
     "body-parser": "^1.13.3",
     "underscore": "^1.8.3",
-    "express": "^4.13.2"
+    "express": "^4.13.2",
+    "request": "^2.71.0"
   },
   "bugs": {
     "url": "https://github.com/htaiwan/facebook-bolt/issues"
