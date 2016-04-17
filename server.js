@@ -49,7 +49,7 @@ app.post('/webhook/', function (req, res) {
       text = event.message.text;
       // Handle a text message from this sender
       console.log('AAAA ===>>> ' + text);
-      sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+      sendTextMessage(sender, "阿虎機器人: "+ text.substring(0, 200));
     }
   }
   res.sendStatus(200);
