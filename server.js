@@ -6,6 +6,7 @@ var page_token = 'CAAN5IdgZBuDsBAHFJFwFxNO0OdXQfVrqZAwsQ2tH54ynGxu830cFTTjhzctbo
 
 var app = express();
 var PORT = process.env.PORT || 3000;
+var button = require('./dataModel.js');
 
 app.use(bodyParser.json());
 
@@ -21,6 +22,28 @@ function sendTextMessage(sender, text) {
     json: {
       recipient: {id:sender},
       message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+}
+
+// button templete
+function sendButtonMessage(sender, text) {
+  messageData = {
+    text:text
+  }
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:page_token},
+    method: 'POST',
+    json: {
+      recipient: {id:sender},
+      button,
     }
   }, function(error, response, body) {
     if (error) {
@@ -49,6 +72,7 @@ app.post('/webhook/', function (req, res) {
       // Handle a text message from this sender
       console.log('AAAA ===>>> ' + text);
       sendTextMessage(sender, "阿虎機器人: "+ text.substring(0, 200));
+      // sendButtonMessage(sender, "阿虎機器人: "+ text.substring(0, 200));
     }
   }
   res.sendStatus(200);
