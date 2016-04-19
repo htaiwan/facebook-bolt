@@ -70,7 +70,7 @@ app.post('/webhook/', function (req, res) {
     if (event.message && event.message.text) {
       text = event.message.text;
       // Handle a text message from this sender
-      console.log('AAAA ===>>> ' + text);
+      console.log('收到的訊息 ===>>> ' + text);
       sendTextMessage(sender, "阿虎機器人: "+ text.substring(0, 200));
       // sendButtonMessage(sender, "阿虎機器人: "+ text.substring(0, 200));
     }
